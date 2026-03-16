@@ -1,0 +1,105 @@
+Train Data
+1. The train data provided are data from 4 subjects in 3 folders in the following structure:\
+
+- keypointlabel
+----keypoints_with_labels_userID.csv\
+..\
+..\
+
+
+- keypoints
+----video_userID.csv\
+..\
+..\
+
+
+- timetable
+-- csv\
+----userID.csv\
+..\
+..\
+
+-- srt\
+userID_vrew.srt\
+..\
+..\
+
+
+2.  Training Data 
+A: Raw pose keypoints with a timetable log for four participants
+Contains continuous frame-by-frame keypoints (30 fps) for all activity sessions. Includes exact timestamps for each labeled activity.
+
+B: Pre-segmented activity samples with associated labels
+Includes activity label column with extracted pose. Ready-to-train format for quick model prototyping.
+
+Option 1 is suitable for those wanting to experiment with custom segmentation, while Option 2 is already pre-annotated and formatted for classification.
+You can either use directly keypointlabel where keypoints are annotated with labels from timetable or use the keypoints and timetable to do the annotation by yourself.
+Check for discrepancies in the labeling such as 'biting' and 'biting nails'
+
+The activities are:
+|--------------------------|---------------------|
+|            Activity      |    Behavior Type    |
+|--------------------------|---------------------|
+|     Sitting quietly      |        Normal       | 
+|      Using phone         |        Normal       | 
+|          Walking         |        Normal       | 
+|      Eating snacks       |        Normal       | 
+|      Head banging        |        Unusual      | 
+|   Throwing things        |        Unusual      |
+|          Attacking       |        Unusual      |
+|      Biting nails        |        Unusual      |
+|--------------------------|---------------------|
+
+
+3. Objectives: Participants are expected to:
+
+> A. Recognize and classify activities from keypoint-based pose data provided in the shared test dataset.
+ Distinguish between normal and unusual activities based solely on anonymized pose sequences.
+
+> B. Develop a generalized model that improves abnormal activity detection using a Leave-One-Subject-Out (LOSO) strategy.
+Train on the given subjects and predict on unseen subjects to simulate real-world generalization to new individuals.
+
+
+4. Challenges in the Dataset
+Participants are encouraged to account for the following real-world complexities in their model development:
+
+**Data Imbalance
+Normal activities are more frequent than abnormal ones, mimicking real-world distribution.
+
+**Irregular and Unpredictable Unusual Activities
+Unusual behaviors such as attacking or throwing occur suddenly and vary greatly in form and timing, making them hard to model.
+
+**Temporal Variability
+Unusual activities tend to be abrupt, while normal activities are more consistent or sustained.
+
+**Subject Variability
+Participants differ in body size, posture, and how they perform the same activity.
+
+You can confirm the rest of the challenges from the data.\
+
+
+
+5. Test Data (to be provide later)
+> A. Keypoint data from unseen participant 
+** Participants must submit predicted activity labels for each timestamp row.
+
+> B. For objective B, we will provide another 5th participant with label for 5th subject for Leave-One-Subject-Out evaluation. 
+** For B, A predictions should be submitted by the teams first so you can get the file.
+
+
+
+6. Evaluation Metrics
+> A. Classification of activities
+** Accuracy, F1-Score (Abnormal), Precision and Recall 
+
+> B. Model performance on LOSO evaluation
+** After finishing the classification, we will provide the labels for 5 person evaluation with Leave One Subject Out.
+
+
+7. Submission Format. Participants must submit:
+> A.csv file with: participant_id, timestamp, predicted_label
+
+> B. Short report describing approach, findings, and evaluation for LOSO.
+
+
+GANBATTE!
